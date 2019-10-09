@@ -37,3 +37,4 @@ run-tests.php
 *.loT
 *.lo
 .idea
+configure.ac

@@ -91,8 +91,8 @@ cd cld2-php-ext
 ```bash
 wget -nv -O - https://github.com/CLD2Owners/cld2/archive/master.tar.gz | tar zx
 cd cld2-master/internal
-./compile_libs.sh
-sudo cp libcld2.so /usr/local/lib 
+CFLAGS="-Wno-narrowing -O3"  ./compile_libs.sh
+sudo cp libcld2_full.so /usr/local/lib/libcld2.so
 ```
 
 **Compile CLD2 PHP extension**
@@ -101,10 +101,15 @@ Come back to the `cld2-php-ext` directory and execute:
 
 ```bash
 phpize
-./configure --with-cld2=libcld2
+./configure --with-cld2=cld2-master
 make -j
 sudo make install
 ```
+
+##### NOTES
+- `./configure --with-cld2=libcld2` here `libcld2` is folder name with plugin in my case it is `cld2-master` 
+- look at `./configure` file at line ~4017. search for `PHP_CLD2`
+- look at `internal/compact_lang_det_impl.h`
 
 Do not forget to add `extension=cld2.so` to your PHP ini.
 
@@ -118,8 +123,3 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 - [CLD2 full version](https://code.google.com/p/cld2/wiki/CLD2FullVersion)
 
 [![Analytics](https://ga-beacon.appspot.com/UA-45983436-1/fntlnz/cld2-php-ext)](https://github.com/igrigorik/ga-beacon)
-
-
-## Installation notes
-
-- 
