@@ -88,8 +88,16 @@ cd cld2-php-ext
 
 **Compile CLD2 library**
 
+For downloading from scratch
+
 ```bash
 wget -nv -O - https://github.com/CLD2Owners/cld2/archive/master.tar.gz | tar zx
+
+```
+
+If not use next 
+
+```bash
 cd cld2-master/internal
 CFLAGS="-Wno-narrowing -O3"  ./compile_libs.sh
 sudo cp libcld2_full.so /usr/local/lib/libcld2.so
